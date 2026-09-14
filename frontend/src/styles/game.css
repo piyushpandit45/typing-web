@@ -1,0 +1,307 @@
+.game-page {
+  width: min(1200px, calc(100% - 16px));
+  margin: 0 auto;
+  padding: 12px 0 40px;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.hud-item {
+  padding: 12px;
+  text-align: center;
+}
+
+.hud-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hud-item strong {
+  font-family: var(--display);
+  font-size: 1.25rem;
+}
+
+.nitro-ready {
+  color: #ffb347;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.track-wrap {
+  position: relative;
+  height: clamp(220px, 32vw, 320px);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, #15203a 0%, #0b1224 38%, #1a140c 38%, #0e0c0a 100%);
+}
+
+.skyline {
+  position: absolute;
+  inset: 0 0 58% 0;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255, 80, 40, 0.35), transparent 28%),
+    linear-gradient(180deg, #0b1428, #1a2748);
+}
+
+.speed-lines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 40px,
+    rgba(255, 255, 255, 0.04) 40px 42px
+  );
+  animation: lines 0.45s linear infinite;
+  opacity: 0.5;
+}
+
+.speed-lines.boost {
+  animation-duration: 0.18s;
+  opacity: 0.9;
+}
+
+@keyframes lines {
+  to {
+    transform: translateX(-42px);
+  }
+}
+
+.road {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62%;
+  background: linear-gradient(#2a2f3a, #16181f);
+}
+
+.lane {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffcc66 0 28px,
+    transparent 28px 52px
+  );
+  animation: roadmove 0.5s linear infinite;
+}
+
+.lane.top {
+  top: 32%;
+}
+
+.lane.bot {
+  bottom: 28%;
+}
+
+@keyframes roadmove {
+  to {
+    background-position: -52px 0;
+  }
+}
+
+.bike {
+  position: absolute;
+  width: 140px;
+  transition: left 80ms linear;
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.45));
+}
+
+.bike.player {
+  bottom: 12%;
+}
+
+.bike.cpu {
+  bottom: 46%;
+}
+
+.progress-row {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+}
+
+.bar.player > i {
+  background: linear-gradient(90deg, #ff3b3b, #ff8a3a);
+}
+
+.bar.cpu > i {
+  background: linear-gradient(90deg, #222, #889);
+}
+
+.typing-card {
+  padding: 20px;
+}
+
+.typing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.typing-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 120px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--red-2));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 40px;
+  text-align: right;
+}
+
+.typing-display {
+  cursor: text;
+}
+
+.prompt {
+  font-family: var(--mono);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  line-height: 1.8;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 12px;
+  letter-spacing: 0.02em;
+  transition: opacity 0.1s ease;
+}
+
+.two-line-display {
+  max-height: 4em;
+  overflow: hidden;
+}
+
+.typing-line {
+  display: block;
+  white-space: pre;
+  margin-bottom: 0.2em;
+  transition: opacity 0.1s ease;
+}
+
+.typing-line:last-child {
+  margin-bottom: 0;
+}
+
+.prompt {
+  transition: opacity 0.1s ease;
+}
+
+.char.ok {
+  color: var(--ok);
+  font-weight: 500;
+}
+
+.char.bad {
+  color: var(--bad);
+  background: rgba(255, 93, 108, 0.2);
+  border-radius: 2px;
+  text-decoration: underline;
+  text-decoration-color: var(--bad);
+}
+
+.char.current {
+  background: rgba(77, 226, 255, 0.3);
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(77, 226, 255, 0.4);
+}
+
+.char.done {
+  opacity: 0.7;
+}
+
+.race-input {
+  margin-top: 12px;
+  font-family: var(--mono);
+}
+
+.countdown {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 6, 12, 0.82);
+  font-family: var(--display);
+  font-size: clamp(4rem, 16vw, 9rem);
+  color: var(--gold);
+}
+
+@media (max-width: 800px) {
+  .hud {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bike {
+    width: 108px;
+  }
+  
+  .typing-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .typing-progress {
+    width: 100%;
+  }
+  
+  .progress-bar {
+    flex: 1;
+  }
+}
