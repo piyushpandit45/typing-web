@@ -56,7 +56,7 @@ connectDb()
   .then(async () => {
     await ensureAdmin();
     await seedDefaultTopics();
-    app.listen(port, () => {
+    app.listen(port, "0.0.0.0", () => {
       console.log(`TypeRider API running on port ${port}`);
     });
   })
